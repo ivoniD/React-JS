@@ -1,7 +1,7 @@
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Loading } from "./components/Loading";
-import { ToDoList } from "./components/ToDoList";
+import { TodoList,  } from "./components/TodoList";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
 
         {/* <Loading /> */}
 
-        <ToDoList />
+       <TodoList />
  
       </div>
     </section>
