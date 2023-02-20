@@ -1,13 +1,33 @@
+import { useState } from "react"
 import { UserDetails } from "./user-details/UserDetails"
 import { UserItem } from "./user-item/UserItem"
+import  * as userService from "../../services/userService"
 
 export const UserList = (props) => {
+
+  const [user, setUser] = useState(null)
+
+  const showInfoHandler = (info) => {
+    userService.getOne(info)
+      .then( x => {
+        setUser(x)
+      })
+  }
+
+  console.log(user);
+
+const closeHandler = () => {
+  setUser(null)
+}
+
+
+
   return(
     <div className="table-wrapper">
     
       {/* overlapComponents */}
-
-      <UserDetails />
+{user && <UserDetails details ={user} close={closeHandler} /> }
+      
 
     <table className="table">
       <thead>
@@ -66,7 +86,7 @@ export const UserList = (props) => {
       </thead>
       <tbody>
 
-      {props.users.map(x => <UserItem key={x._id} {...x} />)}
+      {props.users.map(x => <UserItem key={x._id} {...x} showInfo={showInfoHandler}  />)}
 
       </tbody>
     </table>
