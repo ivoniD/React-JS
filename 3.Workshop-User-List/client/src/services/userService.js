@@ -18,3 +18,50 @@ export const getOne = async (id) => {
     // console.log(result.user)
 }
 
+export const editOne = async (id) => {
+
+}
+// async put(url,data){
+//     const response = await fetch(url, {
+//       method: 'PUT',
+//       body: JSON.stringify({
+//         id: 1,
+//         title: 'foo',
+//         body: 'bar',
+//         userId: 1
+//       }),
+//       headers: {
+//         "Content-type": "application/json; charset=UTF-8"
+//       }
+//     } );
+    
+//     const data = await response.json();
+//     return data;
+// 	}
+
+export const create = async (userData) => {
+    const responce = await fetch(baseUrl, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    });
+
+    const result = await responce.json();
+
+    
+    console.log(result);
+    return result.user;
+}
+
+
+export const deleteOne = async (id) => {
+
+    const responce = await fetch(`${baseUrl}/${id}`, {
+        method: 'DELETE',
+    });
+
+}
+
+

@@ -10,13 +10,6 @@ import { useEffect, useState} from 'react'
 import * as userService from './services/userService'
 
 function App() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    userService.getAll()
-    .then(users => setUsers(users))
-  }, [])
-
 
 
   return (
@@ -27,7 +20,7 @@ function App() {
     <main className="main">
       <section className="card users-container">
         <SearchBar />
-        <UserList users={users} />
+        <UserList  />
       </section>
     </main>
 
