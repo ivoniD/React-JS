@@ -38,23 +38,31 @@ export const UserList = () => {
         setUserAction({ user: null, action: null });
     };
 
-    const userCreateHandler = (userData) => {
-        userService.create(userData)
-            .then(user => {
-                setUsers(oldUsers => [...oldUsers, user]);
-                closeHandler();
-            })
-            .catch(err => {
-                console.log(err);
-            });
+    const userCreateHandler = async (userData) => {
+        // userService.create(userData)
+        //     .then(user => {
+        //         setUsers(oldUsers => [...oldUsers, user]);
+        //         closeHandler();
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     });
+        const result = await userService.create(userData)
+        setUsers(oldUsers => [...oldUsers, result]);
+        closeHandler()
+
     }
 
-    const deleteHandler = (id) => {
-        console.log(id)
-        userService.deleteOne(id)
-        setUsers(oldUsers => [...oldUsers]);
-        closeHandler();
+    const deleteHandler = async (id) => {
+        // console.log(id)
+        // userService.deleteOne(id)
+        // setUsers(oldUsers => [...oldUsers]);
+        // closeHandler();
      
+        // console.log(id)
+        await userService.deleteOne(id)
+        setUsers(oldUsers => oldUsers.filter(x=> x._id !== id));
+        closeHandler();
       }
 
     return (

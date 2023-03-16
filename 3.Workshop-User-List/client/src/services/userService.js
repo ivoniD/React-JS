@@ -40,4 +40,8 @@ export const deleteOne = async (id) => {
         method: 'DELETE',
     });
 
+    const result = await responce.json();
+
+    return result;
+
 }

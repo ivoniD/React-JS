@@ -115,6 +115,7 @@ export const UserEdit = ({
                                 </p>
                             </div>
                         </div>
+                        
                         <div id="form-actions">
                             <button id="action-save" className="btn" type="submit">Edit</button>
                             <button id="action-cancel" className="btn" type="button" onClick={onClose}>
