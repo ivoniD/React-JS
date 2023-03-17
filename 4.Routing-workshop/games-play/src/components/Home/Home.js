@@ -1,19 +1,7 @@
-import { useEffect, useState } from 'react';
-import * as gameService from '../../services/gameService';
+
 import { LatestGame } from './LatestGame';
 
-export const Home = () => {
-
-	const [allGames, setAllGames] = useState([]);
-
-	useEffect(() => {
-		gameService.getAll()
-			.then(result => {
-				// console.log(result);
-				setAllGames(result)
-			})
-	}, []) 
-
+export const Home = (props) => {
 
 	return (
 			<section id="welcome-world">
@@ -24,9 +12,9 @@ export const Home = () => {
 				<img src="./images/four_slider_img01.png" alt="hero" />
 				<div id="home-page">
 					
-					{allGames ? <h1>Latest Games</h1> : <p className="no-articles">No games yet</p>}
+					{props.allGames ? <h1>Latest Games</h1> : <p className="no-articles">No games yet</p>}
 
-					{allGames && allGames.map(x => <LatestGame key={x._id} {...x} /> )}
+					{props.allGames && props.allGames.map(x => <LatestGame key={x._id} {...x} /> )}
 
 				</div>
 			</section>

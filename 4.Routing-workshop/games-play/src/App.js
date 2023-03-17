@@ -8,31 +8,38 @@ import { Routes, Route, Link, Router } from 'react-router-dom'
 import { Register } from './components/Register/Register';
 import { Edit } from './components/Edit/Edit';
 import { Create } from './components/Create/Create';
+import { useEffect, useState } from 'react';
+import * as gameService from './services/gameService';
+
 
 function App() {
+	const [allGames, setAllGames] = useState([]);
+
+	useEffect(() => {
+		gameService.getAll()
+			.then(result => {
+				// console.log(result);
+				setAllGames(result)
+			})
+	}, []) 
+
 	return (
 		<div id="box">
 			< Header />
-
-
 			<main id="main-content">
 				<Routes>
 
-					<Route path="/" element={<Home />} /> 
-					<Route path="/catalog" element={<Catalog />} /> 
+					<Route path="/" element={<Home allGames ={allGames}/>} /> 
+					<Route path="/catalog" element={<Catalog allGames ={allGames}/>} /> 
 					<Route path="/login" element={<Login />} /> 
 					<Route path="/register" element={<Register />} /> 
 					<Route path="/edit" element={<Edit />} /> 
 					<Route path="/create" element={<Create />} /> 
-		
-					{/* < Details/> */}
+					<Route path="/catalog/:gameId" element={<Details allGames ={allGames}/>} /> 
 
 				</Routes>
 			</main>
-
-
 		</div>
-
 	);
 }
 
