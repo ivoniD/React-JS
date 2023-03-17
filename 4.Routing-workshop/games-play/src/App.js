@@ -15,6 +15,22 @@ import * as gameService from './services/gameService';
 function App() {
 	const [allGames, setAllGames] = useState([]);
 
+	const addNewComment = (gameId, comment) => {
+		setAllGames(state => {
+			const game = state.find(x => x._id === gameId)
+
+			const comments = game.comments || [];
+			comments.push(comment)
+			console.log(comments);
+			return [
+				...state.filter(x => x._id !== gameId), // пускам в масива с игри, които не са currentGame. Изрязвам currentgame
+				{...game, comments} 
+				// добавям в масива обект който е currentGame и на самата игра добавям/подменям коментарите да са актуалните
+			]
+		})
+	} 
+	console.log(allGames);
+
 	useEffect(() => {
 		gameService.getAll()
 			.then(result => {
@@ -35,7 +51,7 @@ function App() {
 					<Route path="/register" element={<Register />} /> 
 					<Route path="/edit" element={<Edit />} /> 
 					<Route path="/create" element={<Create />} /> 
-					<Route path="/catalog/:gameId" element={<Details allGames ={allGames}/>} /> 
+					<Route path="/catalog/:gameId" element={<Details allGames ={allGames} addNewComment={addNewComment}/>} /> 
 
 				</Routes>
 			</main>
