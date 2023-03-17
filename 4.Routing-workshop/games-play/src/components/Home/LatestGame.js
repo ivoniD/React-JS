@@ -1,4 +1,4 @@
-export const Game = (props) => {
+export const LatestGame = (props) => {
 
   console.log(props);
 

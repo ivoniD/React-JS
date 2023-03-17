@@ -1,7 +1,7 @@
 export const Register = () => {
-  <>
-    {/* Register Page ( Only for Guest users ) */}
-    <section id="register-page" className="content auth">
+
+return(
+  <section id="register-page" className="content auth">
     <form id="register">
       <div className="container">
         <div className="brand-logo" />
@@ -26,5 +26,7 @@ export const Register = () => {
       </div>
     </form>
   </section>
-  </>
+)
+    
+
 }
