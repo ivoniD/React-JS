@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 
 export const Details = (props) => {
 
@@ -9,26 +9,28 @@ export const Details = (props) => {
     comment: '',
   })
 
-  // console.log(`params - ${gameId}`);
+    // console.log(`params - ${gameId}`);
   const currentGame = props.allGames.find(x => x._id == gameId)
-  // console.log(`current Game - ${currentGame.title}`);
-  // console.log(props.allGames);
+    // console.log(`current Game - ${currentGame.title}`);
+    console.log(props.allGames);
 
   const newCommentHandler = (e) => {
     e.preventDefault();
-
-    const newComment = `${comment.username}: ${comment.comment}`
-    props.addNewComment(gameId, newComment)
-    console.log(gameId + "  " + newComment);
+    const newComment = `${comment.username}: ${comment.comment}`;
+    props.addNewComment(gameId, newComment);
+    // console.log(gameId + "  " + newComment);
+    setComment(state => ({
+      username: '',
+      comment: '',
+    }))
     // console.log('submit');
     // console.log(comment);
     // console.log(e.target.username.value);
     // console.log(e.target.comment.value);
-   
   }
 
   const onChange = (e) => {
-// console.log(` ${[e.target.name]}: ${e.target.value}`);
+    // console.log(` ${[e.target.name]}: ${e.target.value}`);
     setComment(state => ({
       ...state,
       [e.target.name]: e.target.value
@@ -72,12 +74,12 @@ export const Details = (props) => {
       </div>
       {/* Edit/Delete buttons ( Only for creator of this game )  */}
       <div className="buttons">
-        <a href="#" className="button">
+        <Link to="#" className="button">
           Edit
-        </a>
-        <a href="#" className="button">
+        </Link>
+        <Link to="#" className="button">
           Delete
-        </a>
+        </Link>
       </div>
     </div>
     {/* Bonus */}
