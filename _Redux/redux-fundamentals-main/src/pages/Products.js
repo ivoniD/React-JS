@@ -3,7 +3,7 @@ import ProductItem from '../components/ProductItem';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Products = () => {
-  const products = useSelector((state) => state.products)
+  const products = useSelector((state) => state.products.products)
   const dispatch = useDispatch()
 
   useEffect(() => {
