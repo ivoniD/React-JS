@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const AddNewProduct = () => {
   const [title, setTitle] = useState('');
@@ -7,6 +9,9 @@ const AddNewProduct = () => {
   const [category, setCategory] = useState('Mobile');
   const [price, setPrice] = useState(0);
   const [status] = useState('');
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +22,12 @@ const AddNewProduct = () => {
       category,
       price,
     };
-    console.log(product);
+    dispatch({
+      type: 'product/ADD_PRODUCT',
+      payload: product,
+    });
+    navigate('/');
+    // console.log(product);
   };
 
   return (

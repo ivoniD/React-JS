@@ -35,9 +35,22 @@ function productsReducer(state = INITIAL_STATE, action) {
     case 'products/LOAD_PRODUCTS':
       return{
         ...state,
-        products: [...PRODUCTS]
+        products: state.products.length === 0 ? [...PRODUCTS] : state.products
       };
-      default: 
+    case 'product/ADD_PRODUCT':
+      const { title, price, category} = action.payload;
+      const newProduct = {
+        text: title,
+        price,
+        category,
+        id: uuidv4(),
+        isFavourite: false,
+      };
+      return{
+        ...state,
+        products: [...state.products, newProduct]
+      };
+    default: 
         return state
   }
 }
