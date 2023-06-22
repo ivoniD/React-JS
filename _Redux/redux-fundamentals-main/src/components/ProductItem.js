@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { IoIosAdd } from 'react-icons/io';
 
 const ProductItem = ({ item, onFavorite, onCartAdd }) => {
@@ -11,7 +11,10 @@ const ProductItem = ({ item, onFavorite, onCartAdd }) => {
           onClick={() => onFavorite(item.id)}
           className="btn btn-secondary"
         >
-          <AiOutlineHeart size={24} />
+          {item.isFavourite 
+            ? (<AiFillHeart size={24}/>)
+            : (<AiOutlineHeart size={24}/>)
+          }
         </button>
         <button
           onClick={() => onCartAdd(item.id)}

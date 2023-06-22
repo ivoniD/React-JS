@@ -2,9 +2,11 @@ import { legacy_createStore as createStore} from 'redux'
 import { combineReducers } from 'redux'
 import { composeWithDevTools } from '@redux-devtools/extension'
 import productsReducer from './products'
+import favoritesReducer from './favorites'
 
 const rootReducer = combineReducers({
-  products: productsReducer
+  products: productsReducer,
+  favorites: favoritesReducer,
 })
 
 const persistedStorageItems = localStorage.getItem('APP_PRODUCTS');

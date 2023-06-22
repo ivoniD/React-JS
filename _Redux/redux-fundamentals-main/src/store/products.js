@@ -28,6 +28,18 @@ function productsReducer(state = INITIAL_STATE, action) {
         ...state,
         products: [...state.products, newProduct]
       };
+    case 'favorites/ADD_FAVORITE':
+      return{
+        ...state,
+        products: state.products.map(x => {
+          return x.id === action.payload
+            ? { 
+              ...x,
+              isFavourite: !x.isFavourite,
+            }
+            : x;
+        })
+      }
     default: 
         return state
   }
