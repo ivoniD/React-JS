@@ -6,8 +6,6 @@ const INITIAL_STATE = {
 }
 
 
-
-
 function productsReducer(state = INITIAL_STATE, action) {
   switch(action.type){
     case 'products/LOAD_PRODUCTS':
@@ -22,24 +20,24 @@ function productsReducer(state = INITIAL_STATE, action) {
         price,
         category,
         id: uuidv4(),
-        isFavourite: false,
+        isFavorite: false,
       };
       return{
         ...state,
         products: [...state.products, newProduct]
       };
-    case 'favorites/ADD_FAVORITE':
-      return{
-        ...state,
-        products: state.products.map(x => {
-          return x.id === action.payload
-            ? { 
-              ...x,
-              isFavourite: !x.isFavourite,
-            }
-            : x;
-        })
-      }
+      case 'favorites/ADD_FAVORITE':
+        return {
+          ...state,
+          products: state.products.map((prod) => {
+            return prod.id === action.payload
+              ? {
+                  ...prod,
+                  isFavorite: !prod.isFavorite,
+                }
+              : prod;
+          }),
+        };
     default: 
         return state
   }

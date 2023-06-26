@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const Header = () => {
   const favItems = useSelector((state) => {
     return state.products.products.reduce((accumulator, item) => {
-      return item.isFavourite ? accumulator + 1 : accumulator
+      return item.isFavorite ? accumulator + 1 : accumulator
     }, 0)
   })
 
